@@ -33,13 +33,16 @@ class License < ActiveRecord::Base
   ].freeze
 
   belongs_to :user, class_name: "User", foreign_key: "userid"
-  belongs_to :parent, class_name: "License", foreign_key: "parentid"
+  has_many :parents, class_name: "License", foreign_key: "parentid"
   belongs_to :address, class_name: "Address", foreign_key: "adressid"
   belongs_to :file, class_name: "Attachment", foreign_key: "fileid" # Formulario 500 = form_ilai_LO.doc
   belongs_to :entrepreneur, class_name: "Entrepreneur", foreign_key: "clienteid"
   belongs_to :document, class_name: "TypeDocument", foreign_key: "licensa"
   belongs_to :document_type, class_name: "Type", foreign_key: "tipo"
   belongs_to :progress, class_name: "Progress", foreign_key: "andamentoid"
+  belongs_to :enviroment_activity, class_name: "EnviromentActivity", foreign_key: "codigo", primary_key: "codigo"
+  has_one :info_enviroment, class_name: "Ecoplan::InfoEnviroment", foreign_key: "licid"
+  has_one :info_forest, class_name: "Ecoplan::InfoForest", foreign_key: "licid"
 
   rails_admin do
     show do

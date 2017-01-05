@@ -56,6 +56,23 @@ end
 
   end
 
+=begin
+# USO PRIMEIRO CRIA A BASE ZERADA
+# SEGUNDO CRIA AS TABELAS ABAIXO
+# DEPOIS RODA O DB:SEED para a base
+
+  connection.execute("CREATE TABLE controle_migracao
+  (
+    id serial NOT NULL,
+    license_id bigint,
+    processo_id bigint,
+    descricao character varying(500),
+    CONSTRAINT pk_controlprocessos PRIMARY KEY (id)
+  )
+  WITH (
+    OIDS=FALSE
+  );");
+
   connection.execute("CREATE TABLE tiposprocessos
   (
     id bigint NOT NULL,
@@ -101,6 +118,6 @@ end
   INSERT INTO tiposprocessos VALUES (268435456, 'Viabilidade', 0, 0, 0, 0);
   INSERT INTO tiposprocessos VALUES (536870912, 'Julgamento', 0, 0, 0, 0);
   ")
-
+=end
   puts "feitooooo"
 end
